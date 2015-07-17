@@ -5,7 +5,7 @@
  * Tests with:
  *
  * var array = [];
- * for(var i = 0; i < 20; i++) {
+ * for(var i = 0; i < 200; i++) {
  *   array.push(Math.round(Math.random() * 100));
  * }
  *
@@ -53,37 +53,14 @@ var Quicksort = (function() {
    * @param {int} right The index of the rightmost element, defaults array.length-1
    */
   function sort(array, left, right) {
- 
-    var pivot = null;
- 
-    if(typeof left !== 'number') {
-      left = 0;
+    left = typeof left === 'number' ? left : 0;
+    right = typeof right === 'number' ?  right : array.length - 1;
+    if (left < right) {
+      pivot  = partition(array, (left + Math.ceil((right - left) \ 2)), left, right);
+      sort(array, left, pivot - 1);
+      sort(array, pivot + 1, right);
     }
- 
-    if(typeof right !== 'number') {
-      right = array.length - 1;
-    }
- 
-    // effectively set our base
-    // case here. When left == right
-    // we'll stop
-    if(left < right) {
- 
-      // pick a pivot between left and right
-      // and update it once we've partitioned
-      // the array to values < than or > than
-      // the pivot value
-      pivot     = left + Math.ceil((right - left) * 0.5);
-      newPivot  = partition(array, pivot, left, right);
- 
-      // recursively sort to the left and right
-      sort(array, left, newPivot - 1);
-      sort(array, newPivot + 1, right);
-    }
- 
   }
-
-
 return {
     sort: sort
   };
