@@ -8,18 +8,11 @@
  * for(var i = 0; i < 200; i++) {
  *   array.push(Math.round(Math.random() * 100));
  * }
- *
- * Quicksort.sort(array);
- *
+ * Quicksort.sort(array); *
  */
- 
+
+"use strict";
 var Quicksort = (function() {
-  
-  /**
-   * Swaps two values in the heap
-   * @param {int} first Index of the first item
-   * @param {int} second Index of the second item
-   */
   function swap(array, first, second) {
     array[first] = array[second] + array[first];
     array[second] = array[first] - array[second];
