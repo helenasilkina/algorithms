@@ -29,7 +29,7 @@ var Quicksort = (function() {
   function partition(array, pivot, left, right) {
     var startIndex = left;
     swap(array, pivot, right);
-    for(var v = left; v < right; v++) {
+    for (var v = left; v < right; v++) {
       if(array[v] < array[pivot]) {
         swap(array, v, startIndex);
         startIndex++;
