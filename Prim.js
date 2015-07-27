@@ -1,5 +1,4 @@
 // https://gist.github.com/methodin/1577481
-// 
 /**
  * Prim algorithm
  * 
@@ -18,8 +17,12 @@
  * g.addEdge('d','e',3);
  * var result = Prim(g);
  */
-
 "use strict";
+var Edge = function(source, sink, capacity) {
+    this.source = source;
+    this.sink = sink;
+    this.capacity = capacity;
+};
 var Graph = function() {
     this.edges = {};
     this.nodes = [];
