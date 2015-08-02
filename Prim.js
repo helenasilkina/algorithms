@@ -39,11 +39,20 @@ var Graph = function() {
 function Prim(graph) {
     var result = [];
     var usedNodes = {};
-    
+
+    // find graph minimun     
     function findMinimum(graph) {
-        var minimum = Null;
-        // find graph minimun 
-        return minimum;
+        var minimum = [Infinity, Null],
+        edges = graph.edges;
+
+        edges.forEach(function(edge, i, edges) {
+            edge.forEach(function(property, index, edge) {
+                if (property.capacity < minimum[0] && usedNodes[property.sink] === undefined) {
+                        minimum = [property.capacity, property.sink];
+                }
+            });    
+        });
+        return minimum[1];
     }
     
     var node = graph.nodes[Math.round(Math.random() * (graph.nodes.length-1))];
