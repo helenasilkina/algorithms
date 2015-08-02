@@ -9,7 +9,6 @@
  * g.addNode('c');
  * g.addNode('d');
  * g.addNode('e');
- * g.addNode('f');
  * g.addEdge('a','b',1);
  * g.addEdge('b','c',3);
  * g.addEdge('a','d',3);
@@ -39,6 +38,24 @@ var Graph = function() {
 };
 function Prim(graph) {
     var result = [];
+    var usedNodes = {};
+    
+    function findMinimum(graph) {
+        var minimum = Null;
+        // find graph minimun 
+        return minimum;
+    }
+    
+    var node = graph.nodes[Math.round(Math.random() * (graph.nodes.length-1))];
+    result.push(node);
+    usedNodes[node] = true;
+    
+    var minimum = findMinimum(g);
+    while(minimum != null) {
+        result.push(minimum);
+        usedNodes[minimum] = true;
+        minimum = findMinimum(g);
+    }
     
     console.log(result);
     return result;
