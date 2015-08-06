@@ -26,12 +26,18 @@ var Graph = function() {
     this.edges = {};
     this.nodes = [];
     this.nodeMap = {};
+    
     this.addNode = function(node) {
+        this.nodes.push(node);
+        this.nodeMap[node] = this.nodes.length-1;
+        this.edges[node] = [];
       console.log('Node add');
     };
+    
     this.addEdge = function(source, sink, capacity) {
       console.log('Edge add');
     };
+    
     this.edgeExists = function(source, sink) {
       console.log('Edge is exist');
     };
