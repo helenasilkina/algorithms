@@ -1,4 +1,3 @@
-// https://gist.github.com/methodin/1577481
 /**
  * Prim algorithm
  * 
@@ -22,6 +21,7 @@ var Edge = function(source, sink, capacity) {
     this.sink = sink;
     this.capacity = capacity;
 };
+
 var Graph = function() {
     this.edges = {};
     this.nodes = [];
@@ -31,29 +31,35 @@ var Graph = function() {
         this.nodes.push(node);
         this.nodeMap[node] = this.nodes.length-1;
         this.edges[node] = [];
-      console.log('Node add');
     };
     
     this.addEdge = function(source, sink, capacity) {
-      console.log('Edge add');
+        this.edges[source].push(new Edge(source, sink, capacity));
+        this.edges[sink].push(new Edge(sink, source, capacity));
     };
     
     this.edgeExists = function(source, sink) {
-      console.log('Edge is exist');
+        if (this.edges[source]) {
+           this.edges[source].forEach(function(edge, i, array) {
+                if (edge.sink == sink) {
+                    return edge;
+                }   
+           });
+        }
+        return null;
     };
 };
 function Prim(graph) {
-    var result = [];
-    var usedNodes = {};
+    var result = [],
+        usedNodes = {};
 
-    // find graph minimun     
     function findMinimum(graph) {
-        var minimum = [Infinity, Null],
+        var minimum = [Infinity, null],
         edges = graph.edges;
 
         edges.forEach(function(edge, i, edges) {
             edge.forEach(function(property, index, edge) {
-                if (property.capacity < minimum[0] && usedNodes[property.sink] === undefined) {
+                if ((property.capacity < minimum[0]) && !usedNodes[property.sink]) {
                         minimum = [property.capacity, property.sink];
                 }
             });    
@@ -66,13 +72,12 @@ function Prim(graph) {
     usedNodes[node] = true;
     
     var minimum = findMinimum(g);
-    while(minimum != null) {
+    while (minimum != null) {
         result.push(minimum);
         usedNodes[minimum] = true;
         minimum = findMinimum(g);
     }
     
-    console.log(result);
     return result;
 };
 
