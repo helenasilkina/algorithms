@@ -8,8 +8,8 @@
 
 function heapSort(heap) {
   heap.forEach(function(element, index, heap) {
-    heap.insert(heap.length - index, extractMax()) // methods from Heap.js
+    heap.insert(heap.length - index, extractMax());
   });
-  currentSize = heap.length - 1; // variable from Heap.js
+  currentSize = heap.length - 1;
 }    
 
