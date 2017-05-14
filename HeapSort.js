@@ -10,6 +10,4 @@ function heapSort(heap) {
   heap.forEach(function(element, index, heap) {
     heap.insert(heap.length - index, extractMax());
   });
-  currentSize = heap.length - 1;
-}    
-
+};
