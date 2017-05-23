@@ -14,9 +14,9 @@
 "use strict";
 var Quicksort = (function() {
   function swap(array, first, second) {
-    array[first] = array[second] + array[first];
-    array[second] = array[first] - array[second];
-    array[first] = array[first] - array[second];
+    var temp = array[first];
+    array[first] = array[second];
+    array[second] = temp;
   }
   
   function partition(array, pivot, left, right) {
